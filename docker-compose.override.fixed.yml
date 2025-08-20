@@ -1,9 +1,6 @@
-services:
-  mongodb:
-    user: ""  # Remove user specification
+version: '3.8'
 
-  meilisearch:
-    user: ""  # Remove user specification
+services:
   code_interpreter:
     build:
       context: ./services/code-interpreter
@@ -19,17 +16,23 @@ services:
     restart: always
 
   api:
-    build: .
     environment:
       - LIBRECHAT_CODE_API_KEY=a1b2c3d4e5f67890123456789abcdef01234567890abcdef1234567890123456
-      - LIBRECHAT_CODE_BASEURL=http://code_interpreter:8700
+      - CODE_BASEURL=http://code_interpreter:8700
+    user: ""  # Remove user specification
     volumes:
       - type: bind
         source: ./.env
         target: /app/.env
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
-      - librechat_logs:/app/api/logs
+      - librechat_logs:/app/api/logs  # Use named volume instead of bind mount
+
+  mongodb:
+    user: ""  # Remove user specification
+
+  meilisearch:
+    user: ""  # Remove user specification
 
 volumes:
   librechat_logs:

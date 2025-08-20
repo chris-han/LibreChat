@@ -28,42 +28,42 @@ This service provides a secure sandbox environment for executing code in multipl
 
 ### Execute Code
 ```
-POST /v1/exec
+POST /exec
 ```
 
 Execute code in a specified language with optional arguments and file references.
 
 ### Upload Files
 ```
-POST /v1/upload
+POST /upload
 ```
 
 Upload files to be used during code execution.
 
 ### Get Files Information
 ```
-GET /v1/files/{session_id}
+GET /files/{session_id}
 ```
 
 Retrieve information about files associated with a session.
 
 ### Delete a File
 ```
-DELETE /v1/files/{session_id}/{file_id}
+DELETE /files/{session_id}/{file_id}
 ```
 
 Delete a specific file from a session.
 
 ### Download a File
 ```
-GET /v1/download/{session_id}/{file_id}
+GET /download/{session_id}/{file_id}
 ```
 
 Download a generated file from a session.
 
 ### Health Check
 ```
-GET /v1/health
+GET /health
 ```
 
 Check the health status of the service.

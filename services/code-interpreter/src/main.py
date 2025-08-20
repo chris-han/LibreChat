@@ -113,7 +113,7 @@ def cleanup_execution_dir(session_dir: str):
         logger.error(f"Error cleaning up execution directory {session_dir}: {e}")
 
 # Endpoints
-@app.post("/v1/exec", response_model=ExecuteResponse, responses={401: {"model": Error}, 503: {"model": Error}})
+@app.post("/exec", response_model=ExecuteResponse, responses={401: {"model": Error}, 503: {"model": Error}})
 async def execute_code(body: RequestBody, api_key: str = Depends(verify_api_key)):
     logger.info(f"Executing code in language: {body.lang}")
     
@@ -243,7 +243,7 @@ async def execute_code(body: RequestBody, api_key: str = Depends(verify_api_key)
                     generated_files.append(FileRef(
                         id=str(uuid.uuid4()),
                         name=file,
-                        path=f"/v1/download/{session_id}/{file}"
+                        path=f"/download/{session_id}/{file}"
                     ))
         
         # Prepare response
@@ -271,7 +271,7 @@ async def execute_code(body: RequestBody, api_key: str = Depends(verify_api_key)
         logger.error(f"Error during code execution: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
-@app.post("/v1/upload", response_model=UploadResponse, responses={413: {"model": Error}})
+@app.post("/upload", response_model=UploadResponse, responses={413: {"model": Error}})
 async def upload_files(
     files: List[UploadFile] = File(...),
     entity_id: Optional[str] = Form(None),
@@ -328,7 +328,7 @@ async def upload_files(
         logger.error(f"Error during file upload: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
-@app.get("/v1/files/{session_id}", response_model=List[FileObject])
+@app.get("/files/{session_id}", response_model=List[FileObject])
 async def get_files(
     session_id: str,
     detail: str = Query("simple"),
@@ -372,7 +372,7 @@ async def get_files(
         logger.error(f"Error getting files: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
-@app.delete("/v1/files/{session_id}/{file_id}", responses={500: {"model": Error}})
+@app.delete("/files/{session_id}/{file_id}", responses={500: {"model": Error}})
 async def delete_file(
     session_id: str,
     file_id: str,
@@ -395,7 +395,7 @@ async def delete_file(
         logger.error(f"Error deleting file: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
-@app.get("/v1/download/{session_id}/{file_id}")
+@app.get("/download/{session_id}/{file_id}")
 async def download_file(
     session_id: str,
     file_id: str,
@@ -416,7 +416,7 @@ async def download_file(
         logger.error(f"Error downloading file: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
-@app.get("/v1/health")
+@app.get("/health")
 async def health_check():
     logger.info("Health check requested")
     return {"status": "ok", "timestamp": datetime.now().isoformat()}

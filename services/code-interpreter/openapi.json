@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://code_interpreter:8700/v1",
+      "url": "http://code_interpreter:8700",
       "description": "Production server"
     }
   ],

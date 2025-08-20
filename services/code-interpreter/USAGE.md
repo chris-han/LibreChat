@@ -19,7 +19,7 @@ The Code Interpreter Service provides a secure sandbox environment for executing
 
 ## API Endpoints
 
-### Execute Code (`/v1/exec`)
+### Execute Code (`/exec`)
 
 Execute code in a specified language.
 
@@ -51,7 +51,7 @@ Execute code in a specified language.
 - Fortran90 (`f90`)
 - R (`r`)
 
-### Upload Files (`/v1/upload`)
+### Upload Files (`/upload`)
 
 Upload files to be used during code execution.
 
@@ -63,7 +63,7 @@ Upload files to be used during code execution.
 - `files`: One or more file uploads
 - `entity_id`: Optional session identifier
 
-### Get Files (`/v1/files/{session_id}`)
+### Get Files (`/files/{session_id}`)
 
 Retrieve information about files in a session.
 
@@ -71,7 +71,7 @@ Retrieve information about files in a session.
 **Headers:**
 - `x-api-key: your-api-key`
 
-### Delete File (`/v1/files/{session_id}/{file_id}`)
+### Delete File (`/files/{session_id}/{file_id}`)
 
 Delete a specific file from a session.
 
@@ -79,7 +79,7 @@ Delete a specific file from a session.
 **Headers:**
 - `x-api-key: your-api-key`
 
-### Download File (`/v1/download/{session_id}/{file_id}`)
+### Download File (`/download/{session_id}/{file_id}`)
 
 Download a generated file from a session.
 
@@ -87,7 +87,7 @@ Download a generated file from a session.
 **Headers:**
 - `x-api-key: your-api-key`
 
-### Health Check (`/v1/health`)
+### Health Check (`/health`)
 
 Check the health status of the service.
 

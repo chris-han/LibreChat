@@ -31,7 +31,7 @@ def verify_service_configuration():
     if code_baseurl:
         try:
             print(f"\n📡 Testing connection to {code_baseurl}...")
-            response = requests.get(f"{code_baseurl}/v1/health", timeout=5)
+            response = requests.get(f"{code_baseurl}/health", timeout=5)
             if response.status_code == 200:
                 print("✅ Service is reachable")
                 print(f"   Status: {response.json()}")

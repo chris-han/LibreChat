@@ -9,7 +9,7 @@ def execute_code_sample():
     """
     
     # API configuration
-    API_BASE_URL = "http://localhost:8700/v1"
+    API_BASE_URL = "http://localhost:8700"
     API_KEY = "your-code-api-key-here"
     
     # Headers for all requests

@@ -8,7 +8,7 @@ def test_health_check():
     """Test the health check endpoint"""
     print("Testing health check endpoint...")
     try:
-        response = requests.get("http://localhost:8700/v1/health", timeout=10)
+        response = requests.get("http://localhost:8700/health", timeout=10)
         if response.status_code == 200:
             print("✅ Health check: PASSED")
             return True
@@ -22,7 +22,7 @@ def test_health_check():
 def test_python_execution():
     """Test Python code execution"""
     print("\nTesting Python code execution...")
-    url = "http://localhost:8700/v1/exec"
+    url = "http://localhost:8700/exec"
     headers = {
         "Content-Type": "application/json",
         "x-api-key": "your-code-api-key-here"
@@ -51,7 +51,7 @@ def test_python_execution():
 def test_error_handling():
     """Test error handling with invalid code"""
     print("\nTesting error handling...")
-    url = "http://localhost:8700/v1/exec"
+    url = "http://localhost:8700/exec"
     headers = {
         "Content-Type": "application/json",
         "x-api-key": "your-code-api-key-here"
@@ -81,7 +81,7 @@ def test_error_handling():
 def test_unauthorized_access():
     """Test unauthorized access"""
     print("\nTesting unauthorized access...")
-    url = "http://localhost:8700/v1/exec"
+    url = "http://localhost:8700/exec"
     headers = {
         "Content-Type": "application/json",
         "x-api-key": "wrong-api-key"
