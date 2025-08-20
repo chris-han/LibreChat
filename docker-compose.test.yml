@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  code_interpreter_test:
+    build:
+      context: ./services/code-interpreter
+      dockerfile: Dockerfile.test
+    depends_on:
+      - code_interpreter
