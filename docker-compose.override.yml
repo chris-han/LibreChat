@@ -29,6 +29,7 @@ services:
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - librechat_logs:/app/api/logs
+    user: "1000:1000"
 
   mcp-clickhouse:
     image: mcp-clickhouse:local

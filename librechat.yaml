@@ -157,26 +157,26 @@ endpoints:
     capabilities: ["execute_code", "file_search", "actions", "tools"]
   custom:
     # Azure OpenAI Example
-    - name: "Azure OpenAI"
-      apiKey: "${AZURE_API_KEY}"
-      baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com/openai/deployments/${AZURE_OPENAI_API_DEPLOYMENT_NAME}"
-      models:
-        default: ["gpt-4.1-mini"]
-        fetch: true
-      type: "azureOpenAI"
-      titleConvo: true
-      titleModel: "gpt-4.1-mini"
-      summarize: false
-      summaryModel: "gpt-4.1-mini"
-      modelDisplayLabel: "Azure OpenAI"
-      # Azure specific parameters
-      azure: 
-        temperature: 1
-        max_tokens: 1024
-        presence_penalty: 0
-        frequency_penalty: 0
-        stop: null
-        stream: true
+    # - name: "Azure OpenAI"
+    #   apiKey: "${AZURE_API_KEY}"
+    #   baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com/openai/deployments/${AZURE_OPENAI_API_DEPLOYMENT_NAME}"
+    #   models:
+    #     default: ["gpt-4.1-mini"]
+    #     fetch: true
+    #   type: "azureOpenAI"
+    #   titleConvo: true
+    #   titleModel: "gpt-4.1-mini"
+    #   summarize: false
+    #   summaryModel: "gpt-4.1-mini"
+    #   modelDisplayLabel: "Azure OpenAI"
+    #   # Azure specific parameters
+    #   azure: 
+    #     temperature: 1
+    #     max_tokens: 1024
+    #     presence_penalty: 0
+    #     frequency_penalty: 0
+    #     stop: null
+    #     stream: true
     # Groq Example
     - name: 'groq'
       apiKey: '${GROQ_API_KEY}'
@@ -270,33 +270,33 @@ endpoints:
       summarize: false
       summaryModel: "claude-3-haiku-20240307"
       modelDisplayLabel: "Anthropic"
-# fileConfig:
-#   endpoints:
-#     assistants:
-#       fileLimit: 5
-#       fileSizeLimit: 10  # Maximum size for an individual file in MB
-#       totalSizeLimit: 50  # Maximum total size for all files in a single request in MB
-#       supportedMimeTypes:
-#         - "image/.*"
-#         - "application/pdf"
-#     openAI:
-#       disabled: true  # Disables file uploading to the OpenAI endpoint
-#     default:
-#       totalSizeLimit: 20
-#     YourCustomEndpointName:
-#       fileLimit: 2
-#       fileSizeLimit: 5
-#   serverFileSizeLimit: 100  # Global server file size limit in MB
-#   avatarSizeLimit: 2  # Limit for user avatar image size in MB
-#   imageGeneration: # Image Gen settings, either percentage or px
-#     percentage: 100
-#     px: 1024
-#   # Client-side image resizing to prevent upload errors
-#   clientImageResize:
-#     enabled: false  # Enable/disable client-side image resizing (default: false)
-#     maxWidth: 1900  # Maximum width for resized images (default: 1900)
-#     maxHeight: 1900  # Maximum height for resized images (default: 1900)
-#     quality: 0.92  # JPEG quality for compression (0.0-1.0, default: 0.92)
+fileConfig:
+  endpoints:
+    assistants:
+      fileLimit: 5
+      fileSizeLimit: 10  # Maximum size for an individual file in MB
+      totalSizeLimit: 50  # Maximum total size for all files in a single request in MB
+      supportedMimeTypes:
+        - "image/.*"
+        - "application/pdf"
+    openAI:
+      disabled: true  # Disables file uploading to the OpenAI endpoint
+    default:
+      totalSizeLimit: 20
+    YourCustomEndpointName:
+      fileLimit: 2
+      fileSizeLimit: 5
+  serverFileSizeLimit: 100  # Global server file size limit in MB
+  avatarSizeLimit: 2  # Limit for user avatar image size in MB
+  imageGeneration: # Image Gen settings, either percentage or px
+    percentage: 100
+    px: 1024
+  # Client-side image resizing to prevent upload errors
+  clientImageResize:
+    enabled: false  # Enable/disable client-side image resizing (default: false)
+    maxWidth: 1900  # Maximum width for resized images (default: 1900)
+    maxHeight: 1900  # Maximum height for resized images (default: 1900)
+    quality: 0.92  # JPEG quality for compression (0.0-1.0, default: 0.92)
 # # See the Custom Configuration Guide for more information on Assistants Config:
 # # https://www.librechat.ai/docs/configuration/librechat_yaml/object_structure/assistants_endpoint
 # Memory configuration for user memories
