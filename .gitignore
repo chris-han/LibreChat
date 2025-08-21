@@ -140,5 +140,6 @@ helm/**/.values.yaml
 *.local.md
 
 # Local untracked directories
-services/
-mcp-clickhouse/
+# services/
+# mcp-clickhouse/
+# services/
