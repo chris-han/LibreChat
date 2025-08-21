@@ -28,5 +28,35 @@ services:
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - librechat_logs:/app/api/logs
+
+  mcp-clickhouse:
+    image: mcp-clickhouse:local
+    container_name: mcp-clickhouse
+    restart: always
+    environment:
+      CLICKHOUSE_HOST: "${CLICKHOUSE_HOST}"
+      CLICKHOUSE_PORT: "${CLICKHOUSE_PORT}"
+      CLICKHOUSE_USER: "${CLICKHOUSE_USER}"
+      CLICKHOUSE_PASSWORD: "${CLICKHOUSE_PASSWORD}"
+      CLICKHOUSE_SECURE: "true"
+      CLICKHOUSE_VERIFY: "true"
+      CLICKHOUSE_CONNECT_TIMEOUT: "30"
+      CLICKHOUSE_SEND_RECEIVE_TIMEOUT: "30"
+      CLICKHOUSE_MCP_SERVER_TRANSPORT: "http"
+      CLICKHOUSE_MCP_BIND_HOST: "0.0.0.0"
+      CLICKHOUSE_MCP_BIND_PORT: "3080"
+    volumes:
+      - type: bind
+        source: ./.env
+        target: /app/.env
+      - ./librechat.yaml:/app/librechat.yaml
+    ports:
+      - "3081:3080"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
 volumes:
   librechat_logs:
