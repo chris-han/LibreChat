@@ -29,6 +29,7 @@ services:
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - librechat_logs:/app/api/logs
+      - ./fix-permissions.sh:/docker-entrypoint.d/fix-permissions.sh
     user: "1000:1000"
 
   mcp-clickhouse:
