@@ -104,6 +104,12 @@ actions:
     - "swapi.dev"
     - "librechat.ai"
     - "google.com"
+# MCP Servers Configuration
+mcpServers:
+  mcp-clickhouse:
+    type: "http"
+    url: "http://mcp-clickhouse:3080/mcp/"
+    timeout: 60000
 # Example MCP Servers Object Structure
 # mcpServers:
 #   everything:
@@ -320,9 +326,3 @@ fileConfig:
 #     # instructions: "You are a memory management assistant. Store and manage user information accurately."
 #     # model_parameters:
 #     #   temperature: 0.1
-# MCP Servers Configuration
-mcpServers:
-  mcp-clickhouse:
-    type: "http"
-    url: "http://mcp-clickhouse:3080/mcp/"
-    timeout: 60000
