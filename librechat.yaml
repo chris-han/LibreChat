@@ -154,7 +154,7 @@ endpoints:
     # (optional) Disable the builder interface for agents
     disableBuilder: false
     # (optional) Agent Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
-    capabilities: ["execute_code", "file_search", "actions", "tools"]
+    capabilities: ["execute_code", "file_search", "actions", "tools", "artifacts"]
   custom:
     # Azure OpenAI Example
     # - name: "Azure OpenAI"

@@ -3,11 +3,11 @@ services:
     user: ""  # Remove user specification
   meilisearch:
     user: ""  # Remove user specification
-  code_interpreter:
+  code-interpreter:
     build:
       context: ./services/code-interpreter
       dockerfile: Dockerfile
-    container_name: code_interpreter
+    container_name: code-interpreter
     ports:
       - "8700:8700"
     environment:
@@ -20,7 +20,7 @@ services:
     build: .
     environment:
       - LIBRECHAT_CODE_API_KEY=a1b2c3d4e5f67890123456789abcdef01234567890abcdef1234567890123456
-      - LIBRECHAT_CODE_BASEURL=http://code_interpreter:8700
+      - LIBRECHAT_CODE_BASEURL=http://code-interpreter:8700
     volumes:
       - type: bind
         source: ./.env
