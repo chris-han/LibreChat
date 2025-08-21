@@ -25,6 +25,7 @@ services:
       - type: bind
         source: ./.env
         target: /app/.env
+      - ./librechat.yaml:/app/librechat.yaml
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - librechat_logs:/app/api/logs
@@ -49,7 +50,7 @@ services:
       - type: bind
         source: ./.env
         target: /app/.env
-      - ./librechat.yaml:/app/librechat.yaml
+      - ./librechat.yaml:/app/config/librechat.yaml
     ports:
       - "3081:3080"
     deploy:

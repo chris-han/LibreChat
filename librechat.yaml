@@ -157,26 +157,26 @@ endpoints:
     capabilities: ["execute_code", "file_search", "actions", "tools"]
   custom:
     # Azure OpenAI Example
-    # - name: "Azure OpenAI"
-    #   apiKey: "${AZURE_API_KEY}"
-    #   baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com/openai/deployments/${AZURE_OPENAI_API_DEPLOYMENT_NAME}"
-    #   models:
-    #     default: ["gpt-4.1-mini"]
-    #     fetch: false
-    #   type: "azureOpenAI"
-    #   titleConvo: true
-    #   titleModel: "gpt-4.1-mini"
-    #   summarize: false
-    #   summaryModel: "gpt-4.1-mini"
-    #   modelDisplayLabel: "Azure OpenAI"
-    #   # Azure specific parameters
-    #   azure: 
-    #     temperature: 1
-    #     max_tokens: 1024
-    #     presence_penalty: 0
-    #     frequency_penalty: 0
-    #     stop: null
-    #     stream: true
+    - name: "Azure OpenAI"
+      apiKey: "${AZURE_API_KEY}"
+      baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com/openai/deployments/${AZURE_OPENAI_API_DEPLOYMENT_NAME}"
+      models:
+        default: ["gpt-4.1-mini"]
+        fetch: true
+      type: "azureOpenAI"
+      titleConvo: true
+      titleModel: "gpt-4.1-mini"
+      summarize: false
+      summaryModel: "gpt-4.1-mini"
+      modelDisplayLabel: "Azure OpenAI"
+      # Azure specific parameters
+      azure: 
+        temperature: 1
+        max_tokens: 1024
+        presence_penalty: 0
+        frequency_penalty: 0
+        stop: null
+        stream: true
     # Groq Example
     - name: 'groq'
       apiKey: '${GROQ_API_KEY}'
