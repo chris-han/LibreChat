@@ -328,10 +328,10 @@ memory:
   # Memory agent configuration - either use an existing agent by ID or define inline
   agent:
     # Option 1: Use existing agent by ID
-    id: "agent_2h1ECEkec0LFuhlVH3WK0"
+    # id: "agent_2h1ECEkec0LFuhlVH3WK0"
     # Option 2: Define agent inline
-    # provider: "azureOpenAI"
-    # model: "gpt-4.1-mini"
-    # instructions: "You are a memory management assistant. Store and manage user information accurately."
-    # model_parameters:
-    #   temperature: 0.1
+    provider: "azureOpenAI"
+    model: "gpt-4.1-mini"
+    instructions: "You are a memory management assistant. Store and manage user information accurately."
+    model_parameters:
+      temperature: 0.1
