@@ -165,10 +165,10 @@ endpoints:
     # Azure OpenAI Example
     - name: "Azure OpenAI"
       apiKey: "${AZURE_API_KEY}"
-      baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com/openai/deployments/${AZURE_OPENAI_API_DEPLOYMENT_NAME}"
+      baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com"
       models:
         default: ["gpt-4.1-mini"]
-        fetch: true
+        fetch: false
       type: "azureOpenAI"
       titleConvo: true
       titleModel: "gpt-4.1-mini"
@@ -328,10 +328,10 @@ memory:
   # Memory agent configuration - either use an existing agent by ID or define inline
   agent:
     # Option 1: Use existing agent by ID
-    # id: "your-memory-agent-id"
+    id: "agent_2h1ECEkec0LFuhlVH3WK0"
     # Option 2: Define agent inline
-    provider: "azureOpenAI"
-    model: "gpt-4.1-mini"
-    instructions: "You are a memory management assistant. Store and manage user information accurately."
-    model_parameters:
-      temperature: 0.1
+    # provider: "azureOpenAI"
+    # model: "gpt-4.1-mini"
+    # instructions: "You are a memory management assistant. Store and manage user information accurately."
+    # model_parameters:
+    #   temperature: 0.1
