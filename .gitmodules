@@ -1,0 +1,6 @@
+[submodule "services"]
+	path = services
+	url = https://github.com/chris-han/services.git
+[submodule "mcp-clickhouse"]
+	path = mcp-clickhouse
+	url = https://github.com/chris-han/mcp-clickhouse.git
