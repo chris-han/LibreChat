@@ -24,7 +24,7 @@ export const getCustomEndpointConfig = ({
   endpoint,
   appConfig,
 }: {
-  endpoint: string | EModelEndpoint;
+  endpoint: string | typeof EModelEndpoint;
   appConfig?: AppConfig;
 }): Partial<TEndpoint> | undefined => {
   if (!appConfig) {

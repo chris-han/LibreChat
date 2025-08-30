@@ -46,7 +46,7 @@ export const checkAccess = async ({
 }: {
   user: IUser;
   req?: ServerRequest;
-  permissionType: PermissionTypes;
+  permissionType: typeof PermissionTypes;
   permissions: Permissions[];
   bodyProps?: Record<Permissions, string[]>;
   checkObject?: object;
@@ -101,7 +101,7 @@ export const generateCheckAccess = ({
   skipCheck,
   getRoleByName,
 }: {
-  permissionType: PermissionTypes;
+  permissionType: typeof PermissionTypes;
   permissions: Permissions[];
   bodyProps?: Record<Permissions, string[]>;
   skipCheck?: (req?: ServerRequest) => boolean;

@@ -37,7 +37,7 @@ const addFileToResource = ({
   processedResourceFiles,
 }: {
   file: TFile;
-  resourceType: EToolResources;
+  resourceType: typeof EToolResources;
   tool_resources: AgentToolResources;
   processedResourceFiles: Set<string>;
 }): void => {

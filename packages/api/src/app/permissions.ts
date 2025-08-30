@@ -56,7 +56,7 @@ export async function updateInterfacePermissions({
   getRoleByName: (roleName: string, fieldsToSelect?: string | string[]) => Promise<IRole | null>;
   updateAccessPermissions: (
     roleName: string,
-    permissionsUpdate: Partial<Record<PermissionTypes, Record<string, boolean | undefined>>>,
+    permissionsUpdate: Partial<Record<typeof PermissionTypes, Record<string, boolean | undefined>>>,
 
     roleData?: IRole | null,
   ) => Promise<void>;
@@ -96,14 +96,14 @@ export async function updateInterfacePermissions({
     const existingRole = await getRoleByName(roleName);
     const existingPermissions = existingRole?.permissions;
     const permissionsToUpdate: Partial<
-      Record<PermissionTypes, Record<string, boolean | undefined>>
+      Record<typeof PermissionTypes, Record<string, boolean | undefined>>
     > = {};
 
     /**
      * Helper to add permission if it should be updated
      */
     const addPermissionIfNeeded = (
-      permType: PermissionTypes,
+      permType: typeof PermissionTypes,
       permissions: Record<string, boolean | undefined>,
     ) => {
       const permTypeExists = existingPermissions?.[permType];
@@ -123,7 +123,7 @@ export async function updateInterfacePermissions({
       }
     };
 
-    const allPermissions: Partial<Record<PermissionTypes, Record<string, boolean | undefined>>> = {
+    const allPermissions: Partial<Record<typeof PermissionTypes, Record<string, boolean | undefined>>> = {
       [PermissionTypes.PROMPTS]: {
         [Permissions.USE]: getPermissionValue(
           loadedInterface.prompts,
@@ -223,7 +223,7 @@ export async function updateInterfacePermissions({
 
     // Check and add each permission type if needed
     for (const [permType, permissions] of Object.entries(allPermissions)) {
-      addPermissionIfNeeded(permType as PermissionTypes, permissions);
+      addPermissionIfNeeded(permType as typeof PermissionTypes, permissions);
     }
 
     // Update permissions if any need updating

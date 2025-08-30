@@ -149,7 +149,7 @@ export async function refreshAccessToken(
     client_url: string;
     identifier: string;
     refresh_token: string;
-    token_exchange_method: TokenExchangeMethodEnum;
+    token_exchange_method: typeof TokenExchangeMethodEnum;
     encrypted_oauth_client_id: string;
     encrypted_oauth_client_secret: string;
   },
@@ -249,7 +249,7 @@ export async function getAccessToken(
     identifier: string;
     client_url: string;
     redirect_uri: string;
-    token_exchange_method: TokenExchangeMethodEnum;
+    token_exchange_method: typeof TokenExchangeMethodEnum;
     encrypted_oauth_client_id: string;
     encrypted_oauth_client_secret: string;
   },
