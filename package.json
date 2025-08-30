@@ -33,6 +33,7 @@
     "backend": "cross-env NODE_ENV=production node api/server/index.js",
     "backend:dev": "cross-env NODE_ENV=development npx nodemon api/server/index.js",
     "backend:stop": "node config/stop-backend.js",
+    "install-rollup-global": "npm install -g rollup",
     "build:data-provider": "cd packages/data-provider && npm run build",
     "build:api": "cd packages/api && npm run build",
     "build:data-schemas": "cd packages/data-schemas && npm run build",
@@ -115,7 +116,14 @@
     "prettier": "^3.5.0",
     "prettier-eslint": "^16.3.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "typescript-eslint": "^8.24.0"
+    "rimraf": "^5.0.1",
+    "typescript-eslint": "^8.24.0",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "@rollup/plugin-alias": "^4.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.3.0",
+    "rollup-plugin-postcss": "^4.0.2"
   },
   "overrides": {
     "@langchain/openai": "0.5.18",
