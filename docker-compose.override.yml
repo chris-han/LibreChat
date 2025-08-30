@@ -16,7 +16,7 @@ services:
     volumes:
       - ./services/code-interpreter/data:/tmp/code-exec
     restart: always
-  api:
+  app:
     build: .
     environment:
       - LIBRECHAT_CODE_API_KEY=${LIBRECHAT_CODE_API_KEY}

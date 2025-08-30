@@ -161,45 +161,45 @@ endpoints:
     disableBuilder: false
     # (optional) Agent Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
     capabilities: ["execute_code", "file_search", "actions", "tools", "artifacts"]
-  custom:
-    # Azure OpenAI Example
-    - name: "Azure OpenAI"
-      apiKey: "${AZURE_API_KEY}"
-      baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com"
-      models:
-        default: ["gpt-4.1-mini"]
-        fetch: false
-      type: "azureOpenAI"
-      titleConvo: true
-      titleModel: "gpt-4.1-mini"
-      summarize: false
-      summaryModel: "gpt-4.1-mini"
-      modelDisplayLabel: "Azure OpenAI"
-      # Azure specific parameters
-      azure: 
-        temperature: 1
-        max_tokens: 1024
-        presence_penalty: 0
-        frequency_penalty: 0
-        stop: null
-        stream: true
+  # custom:
+  #   # Azure OpenAI Example
+  #   - name: "Azure OpenAI"
+  #     apiKey: "${AZURE_API_KEY}"
+  #     baseURL: "https://${AZURE_OPENAI_API_INSTANCE_NAME}.openai.azure.com"
+  #     models:
+  #       default: ["gpt-4.1-mini"]
+  #       fetch: false
+  #     type: "azureOpenAI"
+  #     titleConvo: true
+  #     titleModel: "gpt-4.1-mini"
+  #     summarize: false
+  #     summaryModel: "gpt-4.1-mini"
+  #     modelDisplayLabel: "Azure OpenAI"
+  #     # Azure specific parameters
+  #     azure: 
+  #       temperature: 1
+  #       max_tokens: 1024
+  #       presence_penalty: 0
+  #       frequency_penalty: 0
+  #       stop: null
+  #       stream: true
     # Groq Example
-    - name: 'groq'
-      apiKey: '${GROQ_API_KEY}'
-      baseURL: 'https://api.groq.com/openai/v1/'
-      models:
-        default:
-          [
-            'llama3-70b-8192',
-            'llama3-8b-8192',
-            'llama2-70b-4096',
-            'mixtral-8x7b-32768',
-            'gemma-7b-it',
-          ]
-        fetch: false
-      titleConvo: true
-      titleModel: 'mixtral-8x7b-32768'
-      modelDisplayLabel: 'groq'
+    # - name: 'groq'
+    #   apiKey: '${GROQ_API_KEY}'
+    #   baseURL: 'https://api.groq.com/openai/v1/'
+    #   models:
+    #     default:
+    #       [
+    #         'llama3-70b-8192',
+    #         'llama3-8b-8192',
+    #         'llama2-70b-4096',
+    #         'mixtral-8x7b-32768',
+    #         'gemma-7b-it',
+    #       ]
+    #     fetch: false
+    #   titleConvo: true
+    #   titleModel: 'mixtral-8x7b-32768'
+    #   modelDisplayLabel: 'groq'
     # Mistral AI Example
     # - name: 'Mistral' # Unique name for the endpoint
     #   # For `apiKey` and `baseURL`, you can use environment variables that you define.
@@ -276,15 +276,16 @@ endpoints:
     #   summarize: false
     #   summaryModel: "claude-3-haiku-20240307"
     #   modelDisplayLabel: "Anthropic"
-    - name: "Deepseek"
-      apiKey: "${DEEPSEEK_API_KEY}"
-      baseURL: "https://api.deepseek.com/v1"
-      models:
-        default: ["deepseek-chat", "deepseek-coder", "deepseek-reasoner"]
-        fetch: false
-      titleConvo: true
-      titleModel: "deepseek-chat"
-      modelDisplayLabel: "Deepseek"
+    # - name: "Deepseek"
+    #   apiKey: "${DEEPSEEK_API_KEY}"
+    #   baseURL: "https://api.deepseek.com/v1"
+    #   models:
+    #     default: ["deepseek-chat", "deepseek-coder", "deepseek-reasoner"]
+    #     fetch: false
+    #   titleConvo: true
+    #   titleModel: "deepseek-chat"
+    #   modelDisplayLabel: "Deepseek"
+
 fileConfig:
   endpoints:
     assistants:
