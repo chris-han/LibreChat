@@ -16,13 +16,13 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "librechat-data-provider/react-query": ["./src/react-query/index.ts"]
     },
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node"]
   },
   "exclude": ["node_modules", "dist", "types"],
   "include": ["src/**/*", "types/index.d.ts", "types/react-query/index.d.ts"]

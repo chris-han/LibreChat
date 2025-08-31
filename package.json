@@ -136,21 +136,12 @@
     "elliptic": "^6.6.1",
     "form-data": "^4.0.4",
     "mdast-util-gfm-autolink-literal": "2.0.0",
-    "remark-gfm": {
-      "mdast-util-gfm-autolink-literal": "2.0.0"
-    },
-    "mdast-util-gfm": {
-      "mdast-util-gfm-autolink-literal": "2.0.0"
-    },
+    "remark-gfm": "4.0.0",
+    "mdast-util-gfm": "3.0.0",
     "katex": "^0.16.21",
-    "rehype-katex": {
-      "katex": "^0.16.21"
-    },
-    "remark-math": {
-      "micromark-extension-math": {
-        "katex": "^0.16.21"
-      }
-    }
+    "rehype-katex": "7.0.1",
+    "remark-math": "6.0.0",
+    "micromark-extension-math": "3.1.0"
   },
   "nodemonConfig": {
     "ignore": [

@@ -2,13 +2,17 @@
 # v0.8.0-rc3
 
 # Base for all builds
-FROM oven/bun:alpine AS base-min
+FROM node:20-alpine AS base-min
 # Install jemalloc
-RUN apk add --no-cache jemalloc
+RUN apk add --no-cache jemalloc curl bash
 # Set environment variable to use jemalloc
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 WORKDIR /app
-RUN apk --no-cache add curl
+
+# Install bun
+RUN curl --retry 5 --retry-delay 5 --retry-connrefused -fsSL https://bun.sh/install | bash
+ENV PATH="/root/.bun/bin:$PATH"
+
 COPY package*.json ./
 COPY packages/data-provider/package*.json ./packages/data-provider/
 COPY packages/api/package*.json ./packages/api/
@@ -20,51 +24,62 @@ COPY api/package*.json ./api/
 # Install all dependencies for every build
 FROM base-min AS base
 WORKDIR /app
+# Copy package.json files for all packages to install dependencies
+COPY package.json ./
+COPY packages/data-provider/package.json ./packages/data-provider/
+COPY packages/data-schemas/package.json ./packages/data-schemas/
+COPY packages/client/package.json ./packages/client/
+COPY client/package.json ./client/
+COPY api/package.json ./api/
+# Install dependencies
 RUN bun install
-
 # Build `data-provider` package
 FROM base AS data-provider-build
 WORKDIR /app/packages/data-provider
 COPY packages/data-provider ./
-RUN bun run build
-
+COPY --from=base /app/node_modules /app/node_modules
+RUN bun run b:data
 # Build `data-schemas` package
 FROM base AS data-schemas-build
 WORKDIR /app/packages/data-schemas
 COPY packages/data-schemas ./
+COPY --from=base /app/node_modules /app/node_modules
 COPY --from=data-provider-build /app/packages/data-provider/dist /app/packages/data-provider/dist
-RUN bun run build
-
+RUN bun run b:data-schemas
 # Build `api` package
 FROM base AS api-package-build
 WORKDIR /app/packages/api
 COPY packages/api ./
 COPY --from=data-provider-build /app/packages/data-provider/dist /app/packages/data-provider/dist
 COPY --from=data-schemas-build /app/packages/data-schemas/dist /app/packages/data-schemas/dist
-RUN bun run build
-
+RUN bun run b:build:api
 # Build `client` package
 FROM base AS client-package-build
 WORKDIR /app/packages/client
 COPY packages/client ./
 RUN bun run build
-
 # Client build
 FROM base AS client-build
-WORKDIR /app/client
-COPY client ./
+WORKDIR /app
+# Copy source code for packages needed to build client
+COPY packages/data-provider ./packages/data-provider
+COPY packages/api ./packages/api
+COPY packages/data-schemas ./packages/data-schemas
+COPY client ./client
 COPY --from=data-provider-build /app/packages/data-provider/dist /app/packages/data-provider/dist
 COPY --from=client-package-build /app/packages/client/dist /app/packages/client/dist
 COPY --from=client-package-build /app/packages/client/src /app/packages/client/src
+WORKDIR /app/client
 ENV NODE_OPTIONS="--max-old-space-size=2048"
-RUN bun run build
-
+RUN bun run b:build
 # API setup (including client dist)
 FROM base-min AS api-build
 # Add `uv` for extended MCP support
 COPY --from=ghcr.io/astral-sh/uv:0.6.13 /uv /uvx /bin/
 RUN uv --version
 WORKDIR /app
+# Copy bun.lockb lockfile to avoid frozen lockfile error
+COPY bun.lockb ./
 # Install only production deps
 RUN bun install --production
 COPY api ./api
@@ -76,4 +91,4 @@ COPY --from=client-build /app/client/dist ./client/dist
 WORKDIR /app/api
 EXPOSE 3080
 ENV HOST=0.0.0.0
-CMD ["node", "server/index.js"]
+CMD ["bun", "run", "b:api"]
