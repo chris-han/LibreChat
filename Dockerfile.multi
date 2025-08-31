@@ -26,12 +26,14 @@ RUN bun install
 FROM base AS data-provider-build
 WORKDIR /app/packages/data-provider
 COPY packages/data-provider ./
+RUN bun install
 RUN bun run build
 
 # Build `data-schemas` package
 FROM base AS data-schemas-build
 WORKDIR /app/packages/data-schemas
 COPY packages/data-schemas ./
+RUN bun install
 COPY --from=data-provider-build /app/packages/data-provider/dist /app/packages/data-provider/dist
 RUN bun run build
 
@@ -39,6 +41,7 @@ RUN bun run build
 FROM base AS api-package-build
 WORKDIR /app/packages/api
 COPY packages/api ./
+RUN bun install
 COPY --from=data-provider-build /app/packages/data-provider/dist /app/packages/data-provider/dist
 COPY --from=data-schemas-build /app/packages/data-schemas/dist /app/packages/data-schemas/dist
 RUN bun run build
@@ -47,12 +50,14 @@ RUN bun run build
 FROM base AS client-package-build
 WORKDIR /app/packages/client
 COPY packages/client ./
+RUN bun install
 RUN bun run build
 
 # Client build
 FROM base AS client-build
 WORKDIR /app/client
 COPY client ./
+RUN bun install
 COPY --from=data-provider-build /app/packages/data-provider/dist /app/packages/data-provider/dist
 COPY --from=client-package-build /app/packages/client/dist /app/packages/client/dist
 COPY --from=client-package-build /app/packages/client/src /app/packages/client/src
