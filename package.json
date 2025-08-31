@@ -1,6 +1,6 @@
 {
   "name": "LibreChat",
-  "version": "v0.8.0-rc3",
+  "version": "0.8.0-rc.3",
   "description": "",
   "scripts": {
     "update": "node config/update.js",
@@ -59,7 +59,7 @@
     "b:api": "NODE_ENV=production bun run api/server/index.js",
     "b:api-inspect": "NODE_ENV=production bun --inspect run api/server/index.js",
     "b:api:dev": "NODE_ENV=production bun run --watch api/server/index.js",
-    "b:data": "cd packages/data-provider && bun run b:build",
+    "b:data": "cd packages/data-provider && bun run build",
     "b:mcp": "cd packages/api && bun run b:build",
     "b:data-schemas": "cd packages/data-schemas && bun run b:build",
     "b:build:api": "cd packages/api && bun run b:build",
@@ -95,6 +95,16 @@
     "@eslint/js": "^9.20.0",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@playwright/test": "^1.50.1",
+    "@rollup/plugin-alias": "^4.0.0",
+    "@rollup/plugin-commonjs": "^24.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-terser": "^0.3.0",
+    "rollup-plugin-generate-package-json": "^3.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "@rollup/plugin-json": "^4.1.0",
     "@types/react-virtualized": "^9.22.0",
     "cross-env": "^7.0.3",
     "elliptic": "^6.6.1",
@@ -118,12 +128,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "rimraf": "^5.0.1",
     "typescript-eslint": "^8.24.0",
-    "rollup-plugin-typescript2": "^0.31.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "@rollup/plugin-alias": "^4.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.3.0",
-    "rollup-plugin-postcss": "^4.0.2"
+    "vite": "^6.3.4"
   },
   "overrides": {
     "@langchain/openai": "0.5.18",
@@ -155,5 +160,8 @@
       "admin/",
       "packages/"
     ]
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
   }
 }

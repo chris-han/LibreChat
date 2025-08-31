@@ -115,7 +115,7 @@ async function validateDockerRunning() {
 
     // Install dependencies
     console.purple('Installing dependencies...');
-    execSync('npm ci', { stdio: 'inherit' });
+    execSync('bun install', { stdio: 'inherit' });
 
     // Build client-side code
     console.purple('Building frontend...');
