@@ -100,6 +100,13 @@ export default defineConfig(({ command }) => ({
     minify: 'terser',
     rollupOptions: {
       preserveEntrySignatures: 'strict',
+      external: [
+        'unenv/node/process',
+        'unenv/polyfill/globalthis',
+        'unenv/node/buffer',
+        'unenv/node/url',
+        'unenv/node/crypto',
+      ],
       output: {
         manualChunks(id: string) {
           if (id.includes('node_modules')) {
@@ -134,7 +141,7 @@ export default defineConfig(({ command }) => ({
             if (id.includes('qrcode.react') || id.includes('@marsidev/react-turnstile')) {
               return 'security-ui';
             }
-
+  
             if (id.includes('@codemirror/view')) {
               return 'codemirror-view';
             }
@@ -147,7 +154,7 @@ export default defineConfig(({ command }) => ({
             if (id.includes('@codemirror')) {
               return 'codemirror-core';
             }
-
+  
             if (id.includes('react-markdown') || id.includes('remark-') || id.includes('rehype-')) {
               return 'markdown-processing';
             }
@@ -172,7 +179,7 @@ export default defineConfig(({ command }) => ({
             if (id.includes('heic-to')) {
               return 'heic-converter';
             }
-
+  
             // Existing chunks
             if (id.includes('@radix-ui')) {
               return 'radix-ui';
@@ -195,7 +202,7 @@ export default defineConfig(({ command }) => ({
             if (id.includes('@headlessui')) {
               return 'headlessui';
             }
-
+  
             // Everything else falls into a generic vendor chunk.
             return 'vendor';
           }
@@ -233,6 +240,7 @@ export default defineConfig(({ command }) => ({
       '~': path.join(__dirname, 'src/'),
       $fonts: path.resolve(__dirname, 'public/fonts'),
       'micromark-extension-math': 'micromark-extension-llm-math',
+      crypto: 'crypto-browserify',
     },
   },
 }));

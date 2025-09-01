@@ -2,13 +2,15 @@
 # v0.8.0-rc3
 
 # Base for all builds
-FROM oven/bun:alpine AS base-min
+FROM node:20-alpine AS base-min
 # Install jemalloc
-RUN apk add --no-cache jemalloc
+RUN apk add --no-cache jemalloc curl bash
 # Set environment variable to use jemalloc
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 WORKDIR /app
-RUN apk --no-cache add curl
+# Install bun for package management
+RUN curl -fsSL https://bun.sh/install | bash
+RUN mv /root/.bun/bin/bun /usr/local/bin/bun
 COPY package*.json ./
 COPY packages/data-provider/package*.json ./packages/data-provider/
 COPY packages/api/package*.json ./packages/api/
@@ -20,6 +22,7 @@ COPY api/package*.json ./api/
 # Install all dependencies for every build
 FROM base-min AS base
 WORKDIR /app
+RUN bun --version
 RUN bun install
 
 # Build `data-provider` package

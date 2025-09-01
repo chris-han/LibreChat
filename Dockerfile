@@ -7,6 +7,10 @@ FROM node:20-alpine AS node
 RUN apk add --no-cache jemalloc
 RUN apk add --no-cache python3 py3-pip uv
 
+# Install bun
+RUN curl -fsSL https://bun.sh/install | bash
+RUN mv /root/.bun/bin/bun /usr/local/bin/bun
+
 # Set environment variable to use jemalloc
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
@@ -31,24 +35,24 @@ RUN \
     touch .env ; \
     # Create directories for the volumes to inherit the correct permissions
     mkdir -p /app/client/public/images /app/api/logs ; \
-    npm config set fetch-retry-maxtimeout 600000 ; \
-    npm config set fetch-retries 5 ; \
-    npm config set fetch-retry-mintimeout 15000 ; \
-    npm install --no-audit
+    bun config set fetch-retry-maxtimeout 600000 ; \
+    bun config set fetch-retries 5 ; \
+    bun config set fetch-retry-mintimeout 15000 ; \
+    bun install
 COPY --chown=node:node . .
 
 RUN \
     # React client build
-    NODE_OPTIONS="--max-old-space-size=2048" npm run frontend; \
-    npm prune --production; \
-    npm cache clean --force
+    NODE_OPTIONS="--max-old-space-size=2048" bun run frontend; \
+    # bun does not support prune, skipping npm prune; \
+    # no direct equivalent for npm cache clean in bun, skipping
 
 RUN mkdir -p /app/client/public/images /app/api/logs
 
 # Node API setup
 EXPOSE 3080
 ENV HOST=0.0.0.0
-CMD ["npm", "run", "backend"]
+CMD ["bun", "run", "backend"]
 
 # Optional: for client with nginx routing
 # FROM nginx:stable-alpine AS nginx-client
